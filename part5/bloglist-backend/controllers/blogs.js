@@ -7,7 +7,7 @@ const { info, error } = require('../utils/logger')
 // REST Crud: CREATE
 // blogsRouter.post('/', async (request, response, next) => {
 blogsRouter.post('/', async (request, response) => {
-  const { title, author, url, likes, viewAll } = request.body.blogObject
+  const { title, author, url, likes, viewAll } = request.body
 
   const token = request.get('token')
   const user = request.get('user')
