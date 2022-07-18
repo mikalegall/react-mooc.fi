@@ -1,7 +1,7 @@
 # https://github.com/Huachao/vscode-restclient/blob/master/README.md#usage
 POST http://localhost:3003/api/blogs/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxhcmUiLCJpZCI6IjYyOTNhNTRkY2ZlMDNlZTMzMDE5M2RjZiIsImlhdCI6MTY1ODEzMzc2OCwiZXhwIjoxNjU4MTM3MzY4fQ.AtsO214D3judtiR4cPza-uY6z__YbbL0TfHP5KZO4xg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxhcmUiLCJpZCI6IjYyOTNhNTRkY2ZlMDNlZTMzMDE5M2RjZiIsImlhdCI6MTY1ODE3NTUwMywiZXhwIjoxNjU4MTc5MTAzfQ.gyrRwZbv5egMXKcqFgzUID3IsGU1xEew817Up_iIGUY
 
 # {
 #     "title": "Linux",
