@@ -56,8 +56,6 @@ const App = () => {
   const addBlog = (props) => {
     blogFormRef.current.toggleVisibility() //Located inside Togglable: useImperativeHandle()
 
-    // const { title, author, url } = props.blogObject
-
     blogService
       .create(props.blogObject)
       .then(returnedBlog => {
