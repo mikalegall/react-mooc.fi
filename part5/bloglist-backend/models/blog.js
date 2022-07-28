@@ -14,7 +14,7 @@ const blogSchema = mongoose.Schema({
     required: true
   },
   likes: Number,
-  viewAll: Boolean,
+  //viewAll: Boolean,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User' // Database document reference name is stored in both documents

@@ -25,7 +25,7 @@ blogsRouter.post('/', async (request, response) => {
       author: author,
       url: url,
       likes: likes || 0,
-      viewAll: viewAll || false,
+      //viewAll: viewAll || false,
       user: user.id
     }
   )
@@ -82,7 +82,7 @@ if (!blog) {
     author: author,
     url: url,
     likes: likes || 0,
-    viewAll: viewAll,
+    //viewAll: viewAll,
     user: userId
   }
 
