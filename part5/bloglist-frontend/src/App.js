@@ -84,7 +84,7 @@ const App = () => {
     </Togglable>
   )
 
-  const handleLoginFormSubmit = async (event) => {
+  const handleLoginFormSubmit = async () => {
     loginFormRef.current.toggleVisibility()
 
     try {
@@ -126,29 +126,33 @@ const App = () => {
     window.localStorage.removeItem('loggedBlogAppUser')
   )
 
-
   const controlDbItemView = (props) => {
-    const blog = blogs.find(b => b.id === props) // Find returns the whole object of first appearence
-    const changedBlog = { ...blog, viewAll: !blog.viewAll } // Spread syntax + add new field by dot-notation
-
-    blogService
-      .update(props, changedBlog)
-      .then(returnedBlog => {
-        setBlogs(blogs.map(blog => blog.id !== props ? blog : returnedBlog))
-      })
-      .catch(error => {
-        console.log('Promise was rejected = ', error)
-
-        setMessage(`Updating blog '${blog.title}' ends up to an error = `)
-        setMessageTypeError(true)
-
-        setTimeout(() => {
-          setMessage(null)
-          setMessageTypeError(null)
-        }, 5000)
-      })
-
+    const blog = blogs.find(b => b.id === props)
+    const changedBlog = { ...blog, viewAll: !blog.viewAll }
+    setBlogs(blogs.map(blog => blog.id !== props ? blog : changedBlog))
   }
+  // const controlDbItemView = (props) => {
+  //   const blog = blogs.find(b => b.id === props) // Find returns the whole object of first appearence
+  //   const changedBlog = { ...blog, viewAll: !blog.viewAll } // Spread syntax + add new field by dot-notation
+
+  //   blogService
+  //     .update(props, changedBlog)
+  //     .then(returnedBlog => {
+  //       setBlogs(blogs.map(blog => blog.id !== props ? blog : returnedBlog))
+  //     })
+  //     .catch(error => {
+  //       console.log('Promise was rejected = ', error)
+
+  //       setMessage(`Updating blog '${blog.title}' ends up to an error = `)
+  //       setMessageTypeError(true)
+
+  //       setTimeout(() => {
+  //         setMessage(null)
+  //         setMessageTypeError(null)
+  //       }, 5000)
+  //     })
+
+  // }
 
 
 
@@ -159,6 +163,7 @@ const App = () => {
     blogService
       .update(id, changedBlog)
       .then(returnedBlog => {
+        returnedBlog['viewAll'] = true
         setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
       })
       .catch(error => {
