@@ -40,6 +40,12 @@ app.use('/api/blogs', middleware.userExtractor, blogsRouter)
 app.use('/api/users', usersRouter)
 // Base endpoint for login
 app.use('/api/login', loginRouter)
+// Base endpoint for testing is exposed only if run it on test mode
+//npm run start:test
+if (process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/testing')
+  app.use('/api/testing', testingRouter)
+}
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler) // This has to be the last loaded middleware
