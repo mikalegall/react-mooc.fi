@@ -16,22 +16,26 @@ const Blog = ({ blog, controlDbItemView, addLikes, removeItem }) => {
     viewAll
       ?
       <div key={blog.id} style={blogStyle} className="viewAllBlogContent">
-        {title} <button onClick={() => controlDbItemView(id)}>{viewAll ? 'Hide' : 'View'}</button>
-        <br />
-        {url}
-        <br />
-        Likes {likes} <button onClick={ () => addLikes(id)}>Like</button>
-        <br />
-        {author}
-        <br />
-        <button onClick={ () => removeItem(blog)}>Remove</button>
+        <span>
+          {title} <button onClick={() => controlDbItemView(id)}>{viewAll ? 'Hide' : 'View'}</button>
+          <br />
+          {url}
+          <br />
+          Likes {likes} <button id="like-button" onClick={() => addLikes(id)}>Like</button>
+          <br />
+          {author}
+          <br />
+        </span>
+        <button id="remove-button" onClick={() => removeItem(blog)}>Remove</button>
       </div>
       :
       <div key={blog.id} className="viewBlogTitle">
-        {title}
-        <br />
-        {author}
-        <br />
+        <span>
+          {title}
+          <br />
+          {author}
+          <br />
+        </span>
         <button onClick={() => controlDbItemView(id)}>{viewAll ? 'Hide' : 'View'}</button>
         <br />
       </div>

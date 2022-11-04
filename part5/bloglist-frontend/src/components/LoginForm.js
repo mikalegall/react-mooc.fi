@@ -21,24 +21,26 @@ const LoginForm = ({ handleLogin, handleUsernameChange, handlePasswordChange, us
     <>
       <form onSubmit={handleLoginFormSubmit}>
         <div>
-        username
+        Username
           <input
             type="text"
+            id='username'
             value={username} /* Input-field will be controlled by variable 'username' from App-State */
             name="Username"
             onChange={({ target }) => handleUsernameChange(target.value)} /* Handler from App-State setUsername() will run changes on variable 'username' when input-field is changing */
           />
         </div>
         <div>
-        password
+        Password
           <input
+            id='password'
             type="password"
             value={password}
             name="Password"
             onChange={({ target }) => handlePasswordChange(target.value)}
           />
         </div>
-        <button type="submit">login</button>
+        <button id="login-button" type="submit">login</button>
       </form>
     </>
   )

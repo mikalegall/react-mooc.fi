@@ -37,12 +37,19 @@ const App = () => {
 
   // We can have multiple effect hooks
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs(blogs)
-    )
+    const loggedUserString = window.localStorage.getItem('loggedBlogAppUser')
+
+    if (loggedUserString) {
+      blogService.getAll().then(blogs =>
+        setBlogs(blogs)
+      )
+    }
   }, [])
 
 
+  //Enables access to another component's functions via
+  // foo.current.bar()
+  //e.g. blogFormRef.current.toggleVisibility()
   // https://fullstackopen.com/en/part5/props_children_and_proptypes#references-to-components-with-ref
   const blogFormRef = useRef()
 
@@ -78,9 +85,14 @@ const App = () => {
   const loginFormRef = useRef()
 
   const loginForm = () => (
-    <Togglable buttonLabel="Login" ref={loginFormRef}> {/* Reusable component with different label */}
-      <LoginForm handleLogin={handleLoginFormSubmit} handleUsernameChange={setUsername} handlePasswordChange={setPassword} username={username} password={password} /> {/* handleLoginFormSubmit = form onSubmit -->
-                                      --> axios.post(baseUrl, newObject, config) */}
+    <Togglable buttonLabel="login" ref={loginFormRef}> {/* Reusable component with different label */}
+      <LoginForm
+        username={username}
+        password={password}
+        handleUsernameChange={setUsername}
+        handlePasswordChange={setPassword}
+        handleLogin={handleLoginFormSubmit} /* handleLoginFormSubmit = form onSubmit --> axios.post(baseUrl, newObject, config) */
+      />
     </Togglable>
   )
 
@@ -214,11 +226,12 @@ const App = () => {
 
             <Notification message={message} messageTypeError={messageTypeError} />
 
-            {user.name} logged in <button onClick={() => logOut()}>logout</button>
+            {user.name} logged in <button id="logout-button" onClick={() => logOut()}>logout</button>
 
             {blogForm()}
 
-            {blogs.sort((firstItem, secondItem) => firstItem.likes - secondItem.likes)
+            {/* {blogs.sort((firstItem, secondItem) => firstItem.likes - secondItem.likes) */}
+            {blogs.sort((firstItem, secondItem) => secondItem.likes - firstItem.likes)
               .map(blog =>
                 <Blog key={blog.id} blog={blog} controlDbItemView={controlDbItemView} addLikes={addLikes} removeItem={removeItem} />
               )

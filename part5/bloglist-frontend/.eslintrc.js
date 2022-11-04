@@ -2,7 +2,8 @@ module.exports = {
   'env': {
     'browser': true,
     'es6': true,
-    'jest/globals': true
+    'jest/globals': true,
+    'cypress/globals': true // npm install --save-dev eslint-plugin-cypress
   },
   'extends': [
     'eslint:recommended',
@@ -15,8 +16,8 @@ module.exports = {
     'ecmaVersion': 2018,
     'sourceType': 'module'
   },
-  'plugins': [
-    'react', 'jest'
+  'plugins': [ // npm install --save-dev eslint-plugin-cypress
+    'react', 'jest', 'cypress'
   ],
   'rules': {
     'indent': [

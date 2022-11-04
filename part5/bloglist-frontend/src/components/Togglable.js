@@ -18,7 +18,7 @@ const Togglable = forwardRef((props, ref) => {
     setVisible(!visible)
   }
 
-
+  // Gives access to 'toggleVisibility'-function for component which did call this component with property 'ref'
   useImperativeHandle(ref, () => {
     return {
       toggleVisibility
